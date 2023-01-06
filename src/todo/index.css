@@ -1,0 +1,52 @@
+.formInput {
+  display: flex; justify-content:center;
+  padding: 5px;
+}
+
+.container {
+  text-align: center;
+  width: 600px;
+  margin: auto;
+  padding: 20px;
+}
+
+
+.btnDelete {
+    width: 50px;
+    padding: 5px;
+    border: none;
+    background-color: rgb(128, 0, 23);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 50%;
+} 
+.btnAdd {
+    width: 50px;
+    padding: 10px;
+    border: none;
+    background-color: teal;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 50%;
+} 
+
+.inputTodo {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid gray;
+  cursor: pointer;
+}
+.checkbox {
+  cursor: pointer;
+}
+
+.row {
+  padding: 5px;
+  width: 100%;
+  display: flex; justify-content: space-between;
+}
