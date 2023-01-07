@@ -1,11 +1,12 @@
 .formInput {
-  display: flex; justify-content:center;
+  display: flex; 
+  justify-content:center;
   padding: 5px;
 }
 
 .container {
   text-align: center;
-  width: 600px;
+  width: 700px;
   margin: auto;
   padding: 20px;
 }

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import './index.css'
+import { Navbar } from "../../components/navbar/navbar";
+import './todo.css'
+
 
 function Todo() {
   
@@ -28,8 +30,7 @@ function Todo() {
         completed: false
       }
     ])
-  console.log(todo.length)
-  console.log(todo)
+
   const handleChange = (e) => {
     setTodo((prev)=>({...prev,[e.target.id]:e.target.value}))
   }
@@ -66,33 +67,34 @@ function Todo() {
       const newTodos = [...todos];
       newTodos[index].completed = !newTodos[index].completed;
       setTodos(newTodos);
-      console.log(newTodos[index].completed)
     } catch (err) { }
   };
 
    
 
   return (
-    <div className="container">
-    <h1>Todos</h1>
-    
-    <form>
-      <div className='formInput'>
-      <input className="inputTodo" value={todo} onChange={e=>setTodo(e.target.value)} type="text" placeholder="Add Todo..." id="title" />
-      <button className="btnAdd" onClick={handleClick}>Send</button>
-      </div>
-    </form>
-
-    <div className='list'> 
-      {todos.map((item, index) => (
-        <div className="row" key={index}>
-          <input type="checkbox" className="checkbox" defaultChecked={item.completed} onClick={() =>handleCheck(index)} />
-          <p className="title" style={item.completed ? { textDecoration: "line-through", color: "gray" } : { textDecoration: "" } }>{item.title}</p>
-          <button className="btnDelete" onClick={() =>handleDelete(index)}>Delete</button>
+    <div>
+      <Navbar/>
+      <div className="container">
+      <h1>Todos</h1>
+      
+      <form>
+        <div className='formInput'>
+        <input className="inputTodo" value={todo} onChange={e=>setTodo(e.target.value)} type="text" placeholder="Add Todo..." id="title" />
+        <button className="btnAdd" onClick={handleClick}>Send</button>
         </div>
-      ))}
-    </div>
+      </form>
 
+      <div className='list'> 
+        {todos.map((item, index) => (
+          <div className="row" key={index}>
+            <input type="checkbox" className="checkbox" defaultChecked={item.completed} onClick={() =>handleCheck(index)} />
+            <p className="titleTodo" style={item.completed ? { textDecoration: "line-through", color: "gray" } : { textDecoration: "" } }>{item.title}</p>
+            <button className="btnDelete" onClick={() =>handleDelete(index)}>Delete</button>
+          </div>
+        ))}
+      </div>
+      </div>
     </div>
   );
 }
