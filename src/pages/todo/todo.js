@@ -1,22 +1,18 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Navbar } from "../../components/navbar/navbar";
+import { addTodo, checkTodo, removeTodo, selectCount} from "../../store/todo";
 import './todo.css'
 
 
 function Todo() {
-  
-  // let data = [
-  //   {
-  //     id: 1,
-  //     title: "Mengerjakan Exercise",
-  //     completed: true
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Mengerjakan Assignment",
-  //     completed: false
-  //   }
-  // ]
+ 
+  const dispatch = useDispatch();
+  const todoX = useSelector((state) => state.list);
+  // console.log("TODOX",todoX)
+  // console.log("TODOX L",todoX.length)
+
+
   const [todo, setTodo] = useState('')
   const [todos, setTodos] = useState([
       {
@@ -35,10 +31,6 @@ function Todo() {
     setTodo((prev)=>({...prev,[e.target.id]:e.target.value}))
   }
 
-  // useEffect(() => {
-  //   setList(data)
-  // },[data])
-// console.log(todos)
   const handleClick = async e => {
     e.preventDefault();
    
@@ -47,26 +39,29 @@ function Todo() {
         alert("Input Todo Tidak Boleh Kosong")
         return false
       }
-      const newTodos = [...todos, {id: todos.length +1, title: todo, completed: false} ]
-      setTodos(newTodos)
-      setTodo('')
+      dispatch(addTodo({id: Math.random(), title: todo, completed: false}))
+      // const newTodos = [...todos, {id: todos.length +1, title: todo, completed: false} ]
+      // setTodos(newTodos)
+      // setTodo('')
     } catch (err) {
     }
   }
 
   const handleDelete = async (index) => {
     try {
-      const newTodos = [...todos];
-      newTodos.splice(index, 1);
-      setTodos(newTodos);
+      dispatch(removeTodo(index))
+      // const newTodos = [...todos];
+      // newTodos.splice(index, 1); 
+      // setTodos(newTodos);
     } catch (err) { }
   };
 
   const handleCheck = async (index) => {
     try {
-      const newTodos = [...todos];
-      newTodos[index].completed = !newTodos[index].completed;
-      setTodos(newTodos);
+      dispatch(checkTodo(index))
+      // const newTodos = [...todos];
+      // newTodos[index].completed = !newTodos[index].completed;
+      // setTodos(newTodos);
     } catch (err) { }
   };
 
@@ -78,19 +73,18 @@ function Todo() {
       <div className="container">
       <h1>Todos</h1>
       
-      <form>
         <div className='formInput'>
         <input className="inputTodo" value={todo} onChange={e=>setTodo(e.target.value)} type="text" placeholder="Add Todo..." id="title" />
         <button className="btnAdd" onClick={handleClick}>Send</button>
         </div>
-      </form>
+
 
       <div className='list'> 
-        {todos.map((item, index) => (
+        {todoX && todoX.map((item, index) => (
           <div className="row" key={index}>
-            <input type="checkbox" className="checkbox" defaultChecked={item.completed} onClick={() =>handleCheck(index)} />
+            <input type="checkbox" className="checkbox" defaultChecked={item.completed} onClick={() => dispatch(checkTodo(index))} />
             <p className="titleTodo" style={item.completed ? { textDecoration: "line-through", color: "gray" } : { textDecoration: "" } }>{item.title}</p>
-            <button className="btnDelete" onClick={() =>handleDelete(index)}>Delete</button>
+            <button className="btnDelete" onClick={() => dispatch(removeTodo(item.id))}>Delete</button>
           </div>
         ))}
       </div>
