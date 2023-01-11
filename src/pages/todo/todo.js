@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navbar } from "../../components/navbar/navbar";
+import { fetchTodos } from "../../hooks/api";
 import { addTodo, checkTodo, removeTodo, selectCount} from "../../store/todo";
 import './todo.css'
 
@@ -11,7 +12,9 @@ function Todo() {
   const todoX = useSelector((state) => state.list);
   // console.log("TODOX",todoX)
   // console.log("TODOX L",todoX.length)
-
+  useEffect(() =>{
+    fetchTodos(dispatch);
+  }, [])
 
   const [todo, setTodo] = useState('')
   const [todos, setTodos] = useState([

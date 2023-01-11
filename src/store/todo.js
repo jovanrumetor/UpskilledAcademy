@@ -9,7 +9,15 @@ export const todoSlice =  createSlice ({
   initialState,
   reducers: {
     addTodo: (state, payload) => { 
-      return {list: [...state.list, payload.payload]};
+      let data = payload.payload
+      if (payload.payload.length === undefined) {
+        state.list = [...state.list, payload.payload];
+      } else {
+        state.list = [...state.list, ...payload.payload];
+      }
+      console.log("payload", data)
+    
+      // return {list: [...state.list, ...payload.payload]};
     },
     removeTodo: (state, payload) => {
       let { list } = state;
@@ -22,6 +30,7 @@ export const todoSlice =  createSlice ({
       // return state.list.filter((item) => item.id !== payload.payload);
     },
     checkTodo: (state, payload) => {
+      console.log(state)
       let { list } = state;
       console.log(payload)
       // console.log(...state.list)
