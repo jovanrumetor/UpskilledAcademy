@@ -1,0 +1,14 @@
+REST adalah singkatan dari Representational State Transfer. REST adalah arsitektur berbasis standar web dan menggunakan Protokol HTTP. HTTP mendefinisikan satu set metode request untuk menunjukkan tindakan yang diinginkan untuk dilakukan untuk resource yang diberikan. 
+Meskipun bisa juga berupa kata benda, metode request ini terkadang disebut sebagai kata kerja HTTP.
+
+GET
+Metode GET meminta representasi dari resource yang ditentukan. Permintaan menggunakan GET seharusnya hanya mengambil data, dan tidak mengubahnya dengan cara apa pun. Karena permintaan GET tidak mengubah status resource, ini dikatakan sebagai metode yang aman.
+
+POST
+Metode POST mengirimkan entitas ke resource yang ditentukan, sering kali menyebabkan perubahan status atau efek samping pada server yaitu metode POST digunakan untuk membuat resource baru ke dalam kumpulan resource.
+
+DELETE
+Metode DELETE menghapus resource yang ditentukan, Operasi DELETE bersifat tidak bisa berulang. Jika menghapus resource maka itu akan dihapus dari kumpulan resource.
+
+
+Untuk Problem 1 - Say Hello from springboot. meskipun hasil pesan yang disampakan sama karena resource yang dikembalikan itu sama tetapi motode REST itu mempunyai kegunaan yang berbeda-beda sesuai penjelasan diatas oleh karena itu untuk penggunaan method REST harus sesuai standar karena biarpun mengeluarkan hasil yang sama setiap method itu cara kerja dan proses hasilnya ada perbedaan.
